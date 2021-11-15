@@ -3,12 +3,13 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const userRoutes = require('./routes/user');
 const productRoutes = require("./routes/product");
+const env = require('dotenv/config')
 
 
 const app = express();
 
 // Connect to mongoDB
-mongoose.connect('Please use another MongoDB connection string', {
+mongoose.connect(process.env.DB, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 });
