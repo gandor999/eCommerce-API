@@ -16,3 +16,19 @@ Hello,
 
 
 PS There is only 1 commit here so that the mongodb connection string can't be viewed
+
+## Renovations
+
+Renovate to typescript and re organize cringe code
+
+Todo:
+- [x] put all into one `src` dir for the js files
+- [x] follow https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html
+- [x] make sure procfile is now `node src/index` or i think `node build/src/index` or whatever we'll figure it out
+- [ ] check if heroku is still free, try vercel for hosting if isnt anymore 
+- [ ] make security dir be ts
+- [ ] make routes be ts
+- [ ] make models be ts
+- [ ] make controllers be ts
+- [ ] make utility functions be ts and rename to utils
+- [ ] do error handling

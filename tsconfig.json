@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "./build",
+    "allowJs": true,
+    "target": "ES6",
+    "module": "NodeNext",
+    // "moduleResolution": "node",
+    // "types": ["node", "dotenv", "cors"]
+  },
+  "include": ["./src/**/*"]
+}
