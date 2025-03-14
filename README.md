@@ -17,6 +17,9 @@ Hello,
 
 PS There is only 1 commit here so that the mongodb connection string can't be viewed
 
+## How to run
+`npm start`
+
 ## Renovations
 
 Renovate to typescript and re organize cringe code
