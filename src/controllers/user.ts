@@ -50,7 +50,7 @@ export async function loginUser(reqBody: UserDTO): Promise<SuccessDto> {
 // Set admin
 export async function setAdmin(id: string, isAdmin: boolean): Promise<SuccessDto> {
   if (!isAdmin) {
-    throw new UnauthorizedError("Admin authority only");
+    throw new UnauthorizedError("Only admin can set other users to admin");
   }
 
   if (!(await getUserModel().findById(id))) {

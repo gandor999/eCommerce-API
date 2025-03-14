@@ -36,7 +36,7 @@ export function getUserRoute(): Router {
     '/:userId/setAsAdmin',
     verify,
     requestWrapper((req, res) => {
-      const userData: void | UserDTO = decode(req.headers.authorization)
+      const userData: UserDTO = decode(req.headers.authorization)
 
       if (!userData) {
         throw new UnauthorizedError("User is not authorized to set admin")
