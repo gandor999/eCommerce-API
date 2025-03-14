@@ -4,12 +4,13 @@ import { createAccessToken } from '../security/auth.js'
 import { getUserModel } from '../database/models/UserModel.js'
 import { UserExistsError } from '../error_handling/error_types/UserExistsError.js'
 import { UnauthorizedError } from '../error_handling/error_types/UnauthorizedError.js'
-import { SuccessDto } from '../DTO/SuccessDto.js'
-import { BearerTokenDto } from '../DTO/BearerTokenDto.js'
-import { MessageDto } from '../DTO/MessageDto.js'
+import { SuccessDto } from '../dto/success/SuccessDto.js'
+import { BearerTokenDto } from '../dto/success/BearerTokenDto.js'
+import { MessageDto } from '../dto/success/MessageDto.js'
+import { UserDTO } from '../dto/UserDto.js'
 
 // Register User
-export async function registerUser(reqBody): Promise<SuccessDto> {
+export async function registerUser(reqBody: UserDTO): Promise<SuccessDto> {
   let userExists = await getUserModel().findOne({ email: reqBody.email })
 
   if (userExists) {
@@ -30,8 +31,8 @@ export async function registerUser(reqBody): Promise<SuccessDto> {
 }
 
 // User login
-export async function loginUser(reqBody): Promise<SuccessDto> {
-  const doesUserExists = await getUserModel().findOne({ email: reqBody.email })
+export async function loginUser(reqBody: UserDTO): Promise<SuccessDto> {
+  const doesUserExists: UserDTO = await getUserModel().findOne({ email: reqBody.email })
 
   if (!doesUserExists) {
     throw new UserExistsError("No such user");
@@ -47,16 +48,20 @@ export async function loginUser(reqBody): Promise<SuccessDto> {
 }
 
 // Set admin
-export async function setAdmin(data, isAdmin): Promise<SuccessDto> {
+export async function setAdmin(id: string, isAdmin: boolean): Promise<SuccessDto> {
   if (!isAdmin) {
     throw new UnauthorizedError("Admin authority only");
+  }
+
+  if (!(await getUserModel().findById(id))) {
+    throw new UserExistsError("No such user");
   }
 
   let update = {
     isAdmin: true,
   }
 
-  return getUserModel().findByIdAndUpdate(data, update).then(() => {
+  return getUserModel().findByIdAndUpdate(id, update).then(() => {
     return new SuccessDto(new MessageDto("User has been given admin permission"), 201)
   })
 }

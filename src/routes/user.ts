@@ -1,10 +1,9 @@
-import { response, Router } from 'express'
+import { Router } from 'express'
 import { registerUser, loginUser, setAdmin } from '../controllers/user.js'
 import { checkout, getMyOrders, getAllOrders } from '../controllers/order.js'
 import { verify, decode } from '../security/auth.js'
-import { ECommerceApiError } from '../error_handling/error_types/ECommerceApiError.js'
 import { requestWrapper, responseWrapper } from '../util/util.js'
-import { UserDTO, UserDTOForDecode } from '../database/models/UserDTO.js'
+import { UserDTO } from '../dto/UserDto.js'
 import mongoose from 'mongoose'
 import { UnauthorizedError } from '../error_handling/error_types/UnauthorizedError.js'
 import { InvalidInputError } from '../error_handling/error_types/InvalidInputError.js'
@@ -37,7 +36,7 @@ export function getUserRoute(): Router {
     '/:userId/setAsAdmin',
     verify,
     requestWrapper((req, res) => {
-      const userData: void | UserDTOForDecode = decode(req.headers.authorization)
+      const userData: void | UserDTO = decode(req.headers.authorization)
 
       if (!userData) {
         throw new UnauthorizedError("User is not authorized to set admin")

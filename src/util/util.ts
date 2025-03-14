@@ -4,7 +4,7 @@ import express from 'express'
 import cors from 'cors'
 import { getUserRoute } from "../routes/user.js"
 import { getProductRoute } from "../routes/product.js"
-import { SuccessDto } from "../DTO/SuccessDto.js"
+import { SuccessDto } from "../dto/success/SuccessDto.js"
 
 function sameLetters(word1, word2) {
   let count1 = 0
