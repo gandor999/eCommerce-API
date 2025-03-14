@@ -3,12 +3,12 @@ import { DatabaseNotConnectedException } from '../error_handling/error_types/Dat
 import { Application } from 'express';
 import { ErrorHandler } from '../error_handling/ErrorHandler.js';
 
-export class SDatabase {
-    private static instance: SDatabase = new SDatabase();
+export class Database {
+    private static instance: Database = new Database();
     private timeoutTime = 20000
     private timeoutCount = 0;
 
-    public static getInstance(): SDatabase {
+    public static getInstance(): Database {
         return this.instance
     }
 

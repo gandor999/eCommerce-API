@@ -1,7 +1,6 @@
 export class ECommerceApiError extends Error {
-    constructor(e, statusCode) {
-        super(e.message);
-        this.statusCode = statusCode;
+    constructor(message) {
+        super(message);
         this.name = "ECommerceApiError";
     }
     getStatusCode() {

@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+import { UserDTOForDecode } from '../database/models/UserDTO.js'
 
 const secret = process.env.SECRET || 'eCommerceAPI'
 
@@ -46,7 +47,7 @@ export function verify(req, res, next) {
 }
 
 // Token decryption
-export function decode(token) {
+export function decode(token): void | UserDTOForDecode {
   if (typeof token !== 'undefined') {
     token = token.slice(7, token.length)
 

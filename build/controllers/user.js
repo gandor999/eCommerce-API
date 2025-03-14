@@ -11,6 +11,7 @@ import User from '../database/models/User.js';
 import { hashSync, compareSync } from 'bcrypt';
 import { createAccessToken } from '../security/auth.js';
 import { ECommerceApiError } from '../error_handling/error_types/ECommerceApiError.js';
+import mongoose from 'mongoose';
 // Register User
 export function registerUser(reqBody) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -77,17 +78,10 @@ export function setAdmin(data, isAdmin) {
             let update = {
                 isAdmin: true,
             };
-            return User.findByIdAndUpdate(data, update).then((promise, error) => {
-                if (error) {
-                    return false;
-                }
-                else {
-                    return `User has been given admin permission`;
-                }
+            return User.findByIdAndUpdate(data, update).then(() => {
+                return `User has been given admin permission`;
             });
         }
-        else {
-            return `Admin authority only`;
-        }
+        throw new ECommerceApiError(new Error("Admin authority only"), 500);
     });
 }

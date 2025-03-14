@@ -1,3 +1,8 @@
+import { ErrorHandler } from "../error_handling/ErrorHandler.js";
+import express from 'express';
+import cors from 'cors';
+import { getUserRoute } from "../routes/user.js";
+import { getProductRoute } from "../routes/product.js";
 function sameLetters(word1, word2) {
     let count1 = 0;
     let count2 = 0;
@@ -29,8 +34,19 @@ function sameLetters(word1, word2) {
     }
 }
 export const requestWrapper = (fn) => (req, res, next) => {
+    ErrorHandler.getInstance().setGlobalResponse(res);
     Promise.resolve(fn(req, res, next)).catch(err => {
         next(err);
     });
 };
+export function initServer(server) {
+    server.use(express.json());
+    server.use(cors());
+    server.use(express.urlencoded({ extended: true }));
+    // All users routes
+    server.use('/users', getUserRoute());
+    // All products routes
+    server.use('/products', getProductRoute());
+    ErrorHandler.getInstance().registerMiddlerWareErrorHandler(server);
+}
 console.log(sameLetters('word-word', 'worqword'));

@@ -26,9 +26,13 @@ Todo:
 - [x] follow https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html
 - [x] make sure procfile is now `node src/index` or i think `node build/src/index` or whatever we'll figure it out
 - [ ] check if heroku is still free, try vercel for hosting if isnt anymore 
-- [ ] make security dir be ts
+- [x] make security dir be ts
 - [ ] make routes be ts
 - [ ] make models be ts
 - [ ] make controllers be ts
-- [ ] make utility functions be ts and rename to utils
-- [ ] do error handling
+- [x] make utility functions be ts and rename to utils
+- [x] do error handling
+- [x] make util be ts
+- [ ] make product be ts
+- [ ] make orders be ts
+- [ ] make users be ts
