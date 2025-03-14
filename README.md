@@ -38,4 +38,4 @@ Todo:
 - [x] make util be ts
 - [ ] make product be ts
 - [ ] make orders be ts
-- [ ] make users be ts
+- [x] make users be ts

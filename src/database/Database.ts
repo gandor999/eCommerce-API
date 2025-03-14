@@ -1,7 +1,5 @@
 import mongoose from 'mongoose'
-import { DatabaseNotConnectedException } from '../error_handling/error_types/DatabaseNotConnectedException.js';
 import { Application } from 'express';
-import { ErrorHandler } from '../error_handling/ErrorHandler.js';
 
 export class Database {
     private static instance: Database = new Database();

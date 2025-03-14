@@ -57,11 +57,12 @@ export class ErrorHandler {
 
         process.on('unhandledRejection', reason => {
             console.log('Unhandled Promise Rejection detected!')
-            if (reason instanceof Error) {
+            if (reason instanceof Error || reason instanceof ECommerceApiError) { // this is soooo weird, ECommerceApiError is an instance of Error already but UserExistsError as not read here for just the instanceOf Error, whuuuuut
                 ErrorHandler.getInstance().handleErrors(reason)
                 return
             }
 
+            console.error("Unknown Error Type: " + JSON.stringify(reason, null, 2))
             ErrorHandler.getInstance().handleErrors(new InternalServerError("A promise was rejected"))
         })
     }

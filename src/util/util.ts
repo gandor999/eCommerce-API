@@ -4,6 +4,7 @@ import express from 'express'
 import cors from 'cors'
 import { getUserRoute } from "../routes/user.js"
 import { getProductRoute } from "../routes/product.js"
+import { SuccessDto } from "../DTO/SuccessDto.js"
 
 function sameLetters(word1, word2) {
   let count1 = 0
@@ -42,6 +43,10 @@ export const requestWrapper = (fn: RequestHandler): RequestHandler => (req: Requ
   Promise.resolve(fn(req, res, next)).catch(err => {
     next(err)
   })
+}
+
+export function responseWrapper(res: Response, successDto: SuccessDto) {
+  res.json(successDto).status(successDto.statusCode)
 }
 
 export function initServer(server: Application) {
