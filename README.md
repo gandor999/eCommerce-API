@@ -39,3 +39,4 @@ Todo:
 - [ ] make services part
 - [x] convert routest to controllers and make this more object oriented
 - [x] make users more oop
+- [ ] convert products to ts then oop
