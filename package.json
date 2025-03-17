@@ -15,7 +15,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx tsc -b && node build/index.js"
+    "build": "npx tsc -b",
+    "start": "node build/index.js",
+    "postinstall": "npm run build"
   },
   "keywords": [],
   "author": "",

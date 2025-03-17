@@ -41,7 +41,10 @@ export class ErrorHandler {
             response.statusCode = e.getStatusCode()
         }
 
-        this.globalResponse.status(response.statusCode).json(response)
+        if (this.globalResponse) {
+            this.globalResponse.status(response.statusCode).json(response)
+        }
+        
         this.logForDebugging(e)
     }
 

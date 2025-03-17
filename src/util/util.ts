@@ -60,15 +60,15 @@ export function initServer(server: Application) {
   server.use(cors())
   server.use(express.urlencoded({ extended: true }))
 
-  server.use('/', (req, res) => {
-    res.send("Hello World")
-  })
-
   // All users routes
   server.use('/users', UserController.getInstance().getRoute())
 
   // All products routes
   server.use('/products', ProductController.getInstance().getRoute())
+
+  server.use('/', (req, res) => {
+    res.send("Hello World")
+  })
 
   ErrorHandler.getInstance().registerMiddlerWareErrorHandler(server)
 }

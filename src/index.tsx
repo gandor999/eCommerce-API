@@ -13,7 +13,7 @@ async function main() {
 
   // Connect to database
   Database.getInstance().connectToDatabase(process.env.DB, process.env.PORT || 4000, app)
-//   console.log(app._router.stack.map(layer => layer.name))
+  //   console.log(app._router.stack.map(layer => layer.name))
 }
 
 main()

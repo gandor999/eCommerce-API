@@ -3,7 +3,7 @@ import { Application } from 'express';
 
 export class Database {
     private static instance: Database = new Database();
-    private timeoutTime = 20000
+    private timeoutTime = 60000
     private timeoutCount = 0;
 
     public static getInstance(): Database {
@@ -15,6 +15,7 @@ export class Database {
         port: string | number,
         server: Application
     ) {
+        console.log("connectionString: " + connectionString)
         mongoose.connect(connectionString)
 
         const interval = setInterval(() => {
@@ -30,10 +31,15 @@ export class Database {
             clearInterval(interval)
             console.log('\nNow connected to MongoDB Atlas')
 
+            // ;(async () => {
+            //     server.listen(port, () => {
+            //         console.log(`API is now online on port ${port}`)
+            //     })
+            // })()
+
             server.listen(port, () => {
                 console.log(`API is now online on port ${port}`)
             })
         })
-
     }
 }
