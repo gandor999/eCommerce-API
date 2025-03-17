@@ -37,4 +37,5 @@ Todo:
 - [ ] make orders be ts
 - [x] make users be ts
 - [ ] make services part
-- [ ] convert routest to controllers and make this more object oriented
+- [x] convert routest to controllers and make this more object oriented
+- [x] make users more oop
