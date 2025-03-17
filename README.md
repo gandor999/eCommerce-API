@@ -22,21 +22,4 @@ PS There is only 1 commit here so that the mongodb connection string can't be vi
 
 ## Renovations
 
-Renovate to typescript and re organize cringe code
-
-Todo:
-- [x] put all into one `src` dir for the js files
-- [x] follow https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html
-- [x] make sure procfile is now `node src/index` or i think `node build/src/index` or whatever we'll figure it out
-- [ ] check if heroku is still free, try vercel for hosting if isnt anymore 
-- [x] make security dir be ts
-- [x] make utility functions be ts and rename to utils
-- [x] do error handling
-- [x] make util be ts
-- [x] make product be ts
-- [x] make orders be ts
-- [x] make users be ts
-- [x] make services part
-- [x] convert routest to controllers and make this more object oriented
-- [x] make users more oop
-- [x] convert products to ts then oop
+The app has been updated to typescript and a more centralized way of catching errors instead of catching them one by one

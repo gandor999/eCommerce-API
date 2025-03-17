@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "eca92b81-cc30-49ef-a40e-238e92e0a828",
+		"name": "eCommerceApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19161761"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"master8@mail.com\",\r\n    \"password\": \"12345\",\r\n    \"firstName\": \"master\",\r\n    \"lastName\": \"master\",\r\n    \"contactNo\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/users/register",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const token = pm.response.json().payload.bearerToken\r",
+							"\r",
+							"pm.collectionVariables.set(\"bearerToken\", token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"master7@mail.com\",\r\n    \"password\": \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/users/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set To Admin",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/users/setAsAdmin?userId=67d3fa86d7ed90d991fe3b61",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"users",
+						"setAsAdmin"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "67d3fa86d7ed90d991fe3b61"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZDNmYTg2ZDdlZDkwZDk5MWZlM2I2MSIsImVtYWlsIjoibWFzdGVyQG1haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzQxOTQ5MjUwfQ.5fQIgNyt2Yy6TTOz7y0He3dfsi_i-QGq1m0QwZ70iSU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Product-10\",\r\n    \"description\": \"Fourth sample product\",\r\n    \"price\": 4000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/products",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Active Product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/products/all",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"products",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One Product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/products/?productId=67d3fbfdc92d9f8eab47d9b6",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"products",
+						""
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "67d3fbfdc92d9f8eab47d9b6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update One Product",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Product was updated\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/products?productId=67d3fbfdc92d9f8eab47d9b6",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "67d3fbfdc92d9f8eab47d9b6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Archive Product",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/products/archive?productId=67d3fbfdc92d9f8eab47d9b6",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"products",
+						"archive"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "67d3fbfdc92d9f8eab47d9b6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Checkout (Create Order)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    // {\r\n    //     \"amount\": 10,\r\n    //     \"productName\": \"Product-10\"\r\n    // },\r\n\r\n    {\r\n        \"amount\": 5,\r\n        \"productName\": \"Product-10\"\r\n    },\r\n    {\r\n        \"amount\": 7,\r\n        \"productName\": \"Product-11\"\r\n    }\r\n]\r\n\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/users/checkout",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"users",
+						"checkout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get My Orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/orders/myOrders",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"orders",
+						"myOrders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/orders/allOrders",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"orders",
+						"allOrders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/test",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"test"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearerToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "bearerToken",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
