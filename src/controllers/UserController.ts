@@ -7,12 +7,12 @@ import { IUserController } from './IUserController.js'
 
 export class UserController implements IUserController {
   private static userController: IUserController = new UserController()
-  private static Router = Router()
+  private router = Router()
   private userService = UserService.getUserService()
 
   constructor() {
     // Register user
-    UserController.Router.post(
+    this.router.post(
       '/register',
       requestWrapper((req, res) => {
         this.userService.registerUser(req.body).then(success => {
@@ -22,7 +22,7 @@ export class UserController implements IUserController {
     )
 
     // Login user
-    UserController.Router.post(
+    this.router.post(
       '/login',
       requestWrapper((req, res) => {
         this.userService.loginUser(req.body).then(success => {
@@ -32,7 +32,7 @@ export class UserController implements IUserController {
     )
 
     // Set user to admin or not
-    UserController.Router.put(
+    this.router.put(
       '/setAsAdmin',
       verify,
       requestWrapper((req, res) => {
@@ -43,7 +43,7 @@ export class UserController implements IUserController {
     )
 
     // Create order for user
-    UserController.Router.post('/checkout', verify, requestWrapper((req, res) => {
+    this.router.post('/checkout', verify, requestWrapper((req, res) => {
       const userData = decode(req.headers.authorization)
       checkout(req.body, userData).then(success => {
         res.send(success)
@@ -51,7 +51,7 @@ export class UserController implements IUserController {
     }))
 
     // Get all orders associated with authenticated user
-    UserController.Router.get('/myOrders', verify, requestWrapper((req, res) => {
+    this.router.get('/myOrders', verify, requestWrapper((req, res) => {
       const userData = decode(req.headers.authorization)
       getMyOrders(userData).then(success => {
         res.send(success)
@@ -59,7 +59,7 @@ export class UserController implements IUserController {
     }))
 
     // Get all orders
-    UserController.Router.get('/orders', verify, requestWrapper((req, res) => {
+    this.router.get('/orders', verify, requestWrapper((req, res) => {
       const userData = decode(req.headers.authorization)
       getAllOrders(userData).then(success => {
         res.send(success)
@@ -68,7 +68,7 @@ export class UserController implements IUserController {
   }
 
   getUserRoutes(): Router {
-    return UserController.Router
+    return this.router
   }
 
   public static getInstance(): IUserController {

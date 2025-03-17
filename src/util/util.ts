@@ -3,7 +3,7 @@ import { ErrorHandler } from "../error_handling/ErrorHandler.js"
 import express from 'express'
 import cors from 'cors'
 import { UserController } from "../controllers/UserController.js"
-import { getProductRoute } from "../controllers/product.js"
+import { getProductRoute } from "../controllers/ProductController.js"
 import { SuccessDto } from "../dto/success/SuccessDto.js"
 
 function sameLetters(word1, word2) {
@@ -44,11 +44,11 @@ function sameLetters(word1, word2) {
  * @param fn - the middleware function for this route
  * @returns 
  */
-export const requestWrapper = (fn: RequestHandler): RequestHandler => (req: Request, res: Response, next: NextFunction) => {
-  ErrorHandler.getInstance().setGlobalResponse(res)
-  Promise.resolve(fn(req, res, next)).catch(err => {
-    next(err)
-  })
+export function requestWrapper(fn: RequestHandler): RequestHandler {
+  return (req, res, next) => {
+    ErrorHandler.getInstance().setGlobalResponse(res)
+    Promise.resolve(fn(req, res, next)).catch(next)
+  }
 }
 
 export function responseWrapper(res: Response, successDto: SuccessDto) {
