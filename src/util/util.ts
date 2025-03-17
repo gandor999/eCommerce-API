@@ -2,8 +2,8 @@ import { Application, NextFunction, Request, RequestHandler, Response } from "ex
 import { ErrorHandler } from "../error_handling/ErrorHandler.js"
 import express from 'express'
 import cors from 'cors'
-import { getUserRoute } from "../routes/user.js"
-import { getProductRoute } from "../routes/product.js"
+import { UserController } from "../controllers/UserController.js"
+import { getProductRoute } from "../controllers/product.js"
 import { SuccessDto } from "../dto/success/SuccessDto.js"
 
 function sameLetters(word1, word2) {
@@ -38,6 +38,12 @@ function sameLetters(word1, word2) {
   }
 }
 
+/**
+ * Redirects all promise rejections and exceptions to the central error handler
+ * 
+ * @param fn - the middleware function for this route
+ * @returns 
+ */
 export const requestWrapper = (fn: RequestHandler): RequestHandler => (req: Request, res: Response, next: NextFunction) => {
   ErrorHandler.getInstance().setGlobalResponse(res)
   Promise.resolve(fn(req, res, next)).catch(err => {
@@ -55,7 +61,7 @@ export function initServer(server: Application) {
   server.use(express.urlencoded({ extended: true }))
 
   // All users routes
-  server.use('/users', getUserRoute())
+  server.use('/users', UserController.getInstance().getUserRoutes())
 
   // All products routes
   server.use('/products', getProductRoute())
