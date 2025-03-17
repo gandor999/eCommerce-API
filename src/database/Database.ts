@@ -15,7 +15,6 @@ export class Database {
         port: string | number,
         server: Application
     ) {
-        console.log("connectionString: " + connectionString)
         mongoose.connect(connectionString)
 
         const interval = setInterval(() => {
@@ -30,12 +29,6 @@ export class Database {
         mongoose.connection.once('open', () => {
             clearInterval(interval)
             console.log('\nNow connected to MongoDB Atlas')
-
-            // ;(async () => {
-            //     server.listen(port, () => {
-            //         console.log(`API is now online on port ${port}`)
-            //     })
-            // })()
 
             server.listen(port, () => {
                 console.log(`API is now online on port ${port}`)

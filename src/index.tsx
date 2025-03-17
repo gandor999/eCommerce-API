@@ -1,4 +1,4 @@
-import express, { Response, Router } from 'express'
+import express from 'express'
 import * as dotenv from 'dotenv'
 import { Database } from './database/Database.js'
 import { ErrorHandler } from './error_handling/ErrorHandler.js'
