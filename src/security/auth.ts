@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { UserDTO } from '../dto/UserDto.js'
+import { UserDto } from '../dto/UserDto.js'
 import { NextFunction, Request, Response } from 'express'
 import { InvalidInputError } from '../error_handling/error_types/InvalidInputError.js'
 
@@ -7,7 +7,7 @@ const secret = process.env.SECRET || 'eCommerceAPI'
 
 // Token creation
 
-export function createAccessToken(user: UserDTO) {
+export function createAccessToken(user: UserDto) {
   // The data will be recieved from the registration form
   // When the user logs in, a token will be created with the user's information
   const data = {
@@ -48,7 +48,7 @@ export function verify(req: Request, res: Response, next: NextFunction) {
 }
 
 // Token decryption
-export function decode(token: string): UserDTO {
+export function decode(token: string): UserDto {
   if (typeof token === 'undefined' || token === undefined || token === null) {
     throw new InvalidInputError("Bearer token is empty");
   }
@@ -62,5 +62,5 @@ export function decode(token: string): UserDTO {
     }
   })
 
-  return jwt.decode(token, { complete: true }).payload as UserDTO
+  return jwt.decode(token, { complete: true }).payload as UserDto
 }

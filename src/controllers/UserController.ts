@@ -3,10 +3,10 @@ import { UserService } from '../services/UserService.js'
 import { checkout, getMyOrders, getAllOrders } from '../services/order.js'
 import { verify, decode } from '../security/auth.js'
 import { requestWrapper, responseWrapper } from '../util/util.js'
-import { IUserController } from './IUserController.js'
+import { IController } from '../interfaces/IController.js'
 
-export class UserController implements IUserController {
-  private static userController: IUserController = new UserController()
+export class UserController implements IController {
+  private static userController: IController = new UserController()
   private router = Router()
   private userService = UserService.getUserService()
 
@@ -66,12 +66,11 @@ export class UserController implements IUserController {
       })
     }))
   }
-
-  getUserRoutes(): Router {
+  getRoute(): Router {
     return this.router
   }
 
-  public static getInstance(): IUserController {
+  public static getInstance(): IController {
     return this.userController
   }
 }
