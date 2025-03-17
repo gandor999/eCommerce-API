@@ -1,4 +1,4 @@
-import Product from '../database/models/Product.js'
+
 import Order from '../database/models/Order.js'
 
 // Get user's orders

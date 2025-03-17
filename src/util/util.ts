@@ -3,7 +3,7 @@ import { ErrorHandler } from "../error_handling/ErrorHandler.js"
 import express from 'express'
 import cors from 'cors'
 import { UserController } from "../controllers/UserController.js"
-import { getProductRoute } from "../controllers/ProductController.js"
+import { ProductController } from "../controllers/ProductController.js"
 import { SuccessDto } from "../dto/success/SuccessDto.js"
 
 function sameLetters(word1, word2) {
@@ -61,10 +61,10 @@ export function initServer(server: Application) {
   server.use(express.urlencoded({ extended: true }))
 
   // All users routes
-  server.use('/users', UserController.getInstance().getUserRoutes())
+  server.use('/users', UserController.getInstance().getRoute())
 
   // All products routes
-  server.use('/products', getProductRoute())
+  server.use('/products', ProductController.getInstance().getRoute())
 
   ErrorHandler.getInstance().registerMiddlerWareErrorHandler(server)
 }
