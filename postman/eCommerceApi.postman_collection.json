@@ -63,11 +63,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:4000/users/login",
+					"raw": "{{host}}/users/login",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "4000",
 					"path": [
 						"users",
 						"login"
@@ -91,11 +90,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:4000/users/setAsAdmin?userId=67d3fa86d7ed90d991fe3b61",
+					"raw": "{{host}}/users/setAsAdmin?userId=67d3fa86d7ed90d991fe3b61",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "4000",
 					"path": [
 						"users",
 						"setAsAdmin"
@@ -113,21 +111,11 @@
 		{
 			"name": "Create Product",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZDNmYTg2ZDdlZDkwZDk5MWZlM2I2MSIsImVtYWlsIjoibWFzdGVyQG1haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzQxOTQ5MjUwfQ.5fQIgNyt2Yy6TTOz7y0He3dfsi_i-QGq1m0QwZ70iSU",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Product-10\",\r\n    \"description\": \"Fourth sample product\",\r\n    \"price\": 4000\r\n}",
+					"raw": "{\r\n    \"name\": \"Product-79\",\r\n    \"description\": \"Sample\",\r\n    \"price\": 4000\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -135,11 +123,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:4000/products",
+					"raw": "{{host}}/products",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "4000",
 					"path": [
 						"products"
 					]
@@ -153,11 +140,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:4000/products/all",
+					"raw": "{{host}}/products/all",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "4000",
 					"path": [
 						"products",
 						"all"
@@ -172,11 +158,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:4000/products/?productId=67d3fbfdc92d9f8eab47d9b6",
+					"raw": "{{host}}/products/?productId=67d3fbfdc92d9f8eab47d9b6",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "4000",
 					"path": [
 						"products",
 						""
@@ -206,11 +191,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:4000/products?productId=67d3fbfdc92d9f8eab47d9b6",
+					"raw": "{{host}}/products?productId=67d3fbfdc92d9f8eab47d9b6",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "4000",
 					"path": [
 						"products"
 					],
@@ -230,11 +214,10 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "localhost:4000/products/archive?productId=67d3fbfdc92d9f8eab47d9b6",
+					"raw": "{{host}}/products/archive?productId=67d3fbfdc92d9f8eab47d9b6",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "4000",
 					"path": [
 						"products",
 						"archive"
@@ -264,11 +247,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:4000/users/checkout",
+					"raw": "{{host}}/users/checkout",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "4000",
 					"path": [
 						"users",
 						"checkout"
@@ -283,13 +265,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:4000/orders/myOrders",
+					"raw": "{{host}}/users/myOrders",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "4000",
 					"path": [
-						"orders",
+						"users",
 						"myOrders"
 					]
 				}
@@ -302,32 +283,30 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:4000/orders/allOrders",
+					"raw": "{{host}}/users/orders",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "4000",
 					"path": [
-						"orders",
-						"allOrders"
+						"users",
+						"orders"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Landing",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:4000/test",
+					"raw": "{{host}}/",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "4000",
 					"path": [
-						"test"
+						""
 					]
 				}
 			},
@@ -370,6 +349,11 @@
 		{
 			"key": "bearerToken",
 			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "host",
+			"value": "localhost:4000",
 			"type": "string"
 		}
 	]
