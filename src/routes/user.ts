@@ -33,20 +33,25 @@ export function getUserRoute(): Router {
 
   // Set user to admin or not
   router.put(
-    '/:userId/setAsAdmin',
+    '/setAsAdmin',
     verify,
     requestWrapper((req, res) => {
       const userData: UserDTO = decode(req.headers.authorization)
+      const queryParam: any = req.query
+
+      if(!queryParam.userId || typeof queryParam.userId !== "string") {
+        throw new InvalidInputError("User Id should be string and is required");
+      }
 
       if (!userData) {
         throw new UnauthorizedError("User is not authorized to set admin")
       }
 
-      if (!mongoose.Types.ObjectId.isValid(req.params.userId)) {
+      if (!mongoose.Types.ObjectId.isValid(queryParam.userId)) {
         throw new InvalidInputError("Not a valid user id")
       }
 
-      setAdmin(req.params.userId, userData.isAdmin).then(resultFromController => {
+      setAdmin(queryParam.userId, userData.isAdmin).then(resultFromController => {
         res.send(resultFromController)
       })
     })
