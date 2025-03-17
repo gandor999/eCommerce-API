@@ -33,10 +33,10 @@ Todo:
 - [x] make utility functions be ts and rename to utils
 - [x] do error handling
 - [x] make util be ts
-- [ ] make product be ts
-- [ ] make orders be ts
+- [x] make product be ts
+- [x] make orders be ts
 - [x] make users be ts
-- [ ] make services part
+- [x] make services part
 - [x] convert routest to controllers and make this more object oriented
 - [x] make users more oop
-- [ ] convert products to ts then oop
+- [x] convert products to ts then oop

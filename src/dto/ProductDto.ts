@@ -1,3 +1,4 @@
+import { Types } from "mongoose"
 
 export class ProductDto extends Document {
     name: string
@@ -5,4 +6,5 @@ export class ProductDto extends Document {
     price: number
     isActive: boolean
     createdOn: Date
+    _id: Types.ObjectId
 }

@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { UserService } from '../services/UserService.js'
-import { checkout, getMyOrders, getAllOrders } from '../services/order.js'
-import { verify, decode } from '../security/auth.js'
+import { OrderService } from '../services/OrderService.js'
+import { verify } from '../security/auth.js'
 import { requestWrapper, responseWrapper } from '../util/util.js'
 import { IController } from '../interfaces/IController.js'
 
@@ -9,6 +9,7 @@ export class UserController implements IController {
   private static userController: IController = new UserController()
   private router = Router()
   private userService = UserService.getUserService()
+  private orderService = OrderService.getInstance()
 
   constructor() {
     // Register user
@@ -44,24 +45,21 @@ export class UserController implements IController {
 
     // Create order for user
     this.router.post('/checkout', verify, requestWrapper((req, res) => {
-      const userData = decode(req.headers.authorization)
-      checkout(req.body, userData).then(success => {
+      this.orderService.checkout(req).then(success => {
         res.send(success)
       })
     }))
 
     // Get all orders associated with authenticated user
     this.router.get('/myOrders', verify, requestWrapper((req, res) => {
-      const userData = decode(req.headers.authorization)
-      getMyOrders(userData).then(success => {
+      this.orderService.getMyOrders(req).then(success => {
         res.send(success)
       })
     }))
 
     // Get all orders
     this.router.get('/orders', verify, requestWrapper((req, res) => {
-      const userData = decode(req.headers.authorization)
-      getAllOrders(userData).then(success => {
+      this.orderService.getAllOrders(req).then(success => {
         res.send(success)
       })
     }))

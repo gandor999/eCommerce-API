@@ -11,7 +11,7 @@ export function createAccessToken(user: UserDto) {
   // The data will be recieved from the registration form
   // When the user logs in, a token will be created with the user's information
   const data = {
-    id: user._id,
+    _id: user._id,
     email: user.email,
     isAdmin: user.isAdmin,
   }
